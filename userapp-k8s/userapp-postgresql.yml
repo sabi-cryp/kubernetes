@@ -1,0 +1,77 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: userapp-postgresql-pvc
+  namespace: jhipster
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: userapp-postgresql
+  namespace: jhipster
+  labels:
+    app: userapp-postgresql
+type: Opaque
+data:
+  postgresql-password: YWVjYmI4YjI1MDNlNGJkY2M4NmZjOGU4ODhiZWJmNWU5NTg1MzZhMzQ0MGEzN2UwNTczZGZmNjEyODY3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: userapp-postgresql
+  namespace: jhipster
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: userapp-postgresql
+  template:
+    metadata:
+      labels:
+        app: userapp-postgresql
+    spec:
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: userapp-postgresql-pvc
+      containers:
+        - name: postgres
+          image: postgres:14.4
+          env:
+            - name: POSTGRES_USER
+              value: userapp
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: userapp-postgresql
+                  key: postgresql-password
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+              subPath: postgres
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "500m"
+            limits:
+              memory: "1Gi"
+              cpu: "1"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: userapp-postgresql
+  namespace: jhipster
+spec:
+  selector:
+    app: userapp-postgresql
+  ports:
+    - port: 5432

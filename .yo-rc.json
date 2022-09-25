@@ -1,0 +1,18 @@
+{
+  "generator-jhipster": {
+    "appsFolders": ["gateway", "userapp"],
+    "clusteredDbApps": {},
+    "directoryPath": "./",
+    "dockerPushCommand": "docker push",
+    "dockerRepositoryName": "sabrineker",
+    "ingressDomain": "",
+    "istio": false,
+    "jwtSecretKey": "ZTVlMGZhZjUyOTgxMjY0YTZjZjc3NTU0NDU1MzZhYzUyMWFiNWMwMmQ4ODhjNDdkMDZkZjZkYzdhODdmNzlhZGM0OWRiNmJjMWY5ODkwY2RiMjRiMmM2MTU5NWMzMmZiOTE3ZQ==",
+    "kubernetesNamespace": "jhipster",
+    "kubernetesServiceType": "LoadBalancer",
+    "kubernetesStorageClassName": "",
+    "kubernetesUseDynamicStorage": true,
+    "monitoring": "prometheus",
+    "serviceDiscoveryType": "eureka"
+  }
+}

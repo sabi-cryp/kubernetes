@@ -1,0 +1,26 @@
+commonLabels:
+  app.kubernetes.io/genereted-by: JHipster
+
+namespace: jhipster
+
+resources:
+  - namespace.yml
+  # Individual apps
+  - jhipstergatewaydemo-k8s/jhipstergatewaydemo-deployment.yml
+  - jhipstergatewaydemo-k8s/jhipstergatewaydemo-service.yml
+  - jhipstergatewaydemo-k8s/jhipstergatewaydemo-mysql.yml
+  - jhipstergatewaydemo-k8s/jhipstergatewaydemo-prometheus-sm.yml
+  - userapp-k8s/userapp-deployment.yml
+  - userapp-k8s/userapp-service.yml
+  - userapp-k8s/userapp-postgresql.yml
+  - userapp-k8s/userapp-prometheus-sm.yml
+  # monitoring prometheus
+  - monitoring-k8s/jhipster-prometheus-cr.yml
+  - monitoring-k8s/jhipster-prometheus-crd.yml
+  - monitoring-k8s/jhipster-grafana.yml
+  - monitoring-k8s/jhipster-grafana-dashboard.yml
+  # service discovery eureka/consul
+  - registry-k8s/jhipster-registry.yml
+  - registry-k8s/application-configmap.yml
+
+patchesJson6902:

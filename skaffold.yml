@@ -1,0 +1,15 @@
+apiVersion: skaffold/v1
+kind: Config
+build:
+  artifacts:
+    - image: sabrineker/jhipstergatewaydemo
+      context: ./gateway
+      jib: {}
+    - image: sabrineker/userapp
+      context: ./userapp
+      jib: {}
+  tagPolicy:
+    envTemplate:
+      template: "{{.IMAGE_NAME}}:latest"
+deploy:
+  kustomize: {}
