@@ -43,6 +43,7 @@ spec:
       containers:
         - name: postgres
           image: postgres:14.4
+          imagePullPolicy: Never
           env:
             - name: POSTGRES_USER
               value: userapp

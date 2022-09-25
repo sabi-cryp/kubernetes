@@ -47,6 +47,7 @@ spec:
       containers:
         - name: jhipstergatewaydemo-app
           image: sabrineker/jhipstergatewaydemo
+          imagePullPolicy: Never
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: prod

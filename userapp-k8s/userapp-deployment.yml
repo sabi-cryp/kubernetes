@@ -47,6 +47,7 @@ spec:
       containers:
         - name: userapp-app
           image: sabrineker/userapp
+          imagePullPolicy: Never
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: prod
