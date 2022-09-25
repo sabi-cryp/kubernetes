@@ -96,7 +96,7 @@ spec:
           image: quay.io/coreos/prometheus-operator:v0.42.1
           name: prometheus-operator
           ports:
-            - containerPort: 8080
+            - containerPort: 8089
               name: http
           resources:
             limits:
